@@ -9,17 +9,18 @@ namespace sqlapp.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        private readonly IProductService _productService;
+
+        public IndexModel (IProductService productService)
         {
-            _logger = logger;
+            _productService = productService;
         }
 
         public List<Product> Products;
         public void OnGet()
         {
-            ProductService productService = new ProductService();
-
-            Products = productService.GetProducts();
+         
+               Products = _productService.GetProducts();
 
         }
     }
